@@ -6,18 +6,9 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const indexRouter = require('./routes/index');
-const Handlebars = require('handlebars');
-const helpers = require('./helpers.js');
 const cors = require('cors');
 
-// Register helper
-Handlebars.registerHelper('formatDate', helpers.formatDate);
-
 const app = express();
-
-// Handlebars middleware
-app.engine('handlebars', exphbs.engine());
-app.set('view engine', 'handlebars');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
