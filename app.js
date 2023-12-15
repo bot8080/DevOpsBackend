@@ -23,10 +23,11 @@ app.use(cors({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
-const connectionString = 'mongodb+srv://ashishralh:Dell%40123@cluster0.vycc0qm.mongodb.net/ProductCatalog?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://dhruvhc2710:dhruvhc2710@cluster0.owzhnsu.mongodb.net/ProductCatalog?retryWrites=true&w=majority'
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+  
 
 // Use routes
 app.use('/', indexRouter);
