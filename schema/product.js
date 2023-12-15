@@ -26,8 +26,6 @@ const productSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(value) {
-                // 'this' refers to the document being saved.
-                // Check if StartingDateAvailable exists and is before EndingDateAvailable
                 return this.StartingDateAvailable && value > this.StartingDateAvailable;
             },
             message: props => `Ending date (${props.value}) must be later than the starting date (${props.instance.StartingDateAvailable})`
@@ -42,12 +40,22 @@ const productSchema = new mongoose.Schema({
         required: false
     },
     // Additional fields
-    Pages: Number,
-    PaperType: String,
-    BindingType: String,
-    Wattage: Number,
-    Lifespan: String,
-    Connectivity: String
+    ProductId: {
+        type: String,
+        required: false
+    },
+    PremiumBrand: {
+        type: Boolean,
+        required: false
+    },
+    SalePrice: {
+        type: Number,
+        required: false
+    },
+    ProducedBy: {
+        type: String,
+        required: false
+    }
 });
 
 // Convert schema into a model
