@@ -98,21 +98,31 @@ router.get('/products/:id/image', (req, res) => {
 });
 
 // POST add a new product
-router.post('/products', (req, res) => {
+router.post('/products', async (req, res) => {
+	const { Name, Price, Colour, Manufacturer, StartingDateAvailable, EndingDateAvailable, Image, Description, productid, Premium_Brand, Produced_By } = req.body;
+	const Sale_Price = Price * 0.8; // 20% discount
+
 	const newProduct = new Product({
-		Name: req.body.Name,
-		Price: req.body.Price,
-		Colour: req.body.Colour,
-		Manufacturer: req.body.Manufacturer,
-		StartingDateAvailable: req.body.StartingDateAvailable,
-		EndingDateAvailable: req.body.EndingDateAvailable,
-		Image: req.body.Image,
-		Description: req.body.Description
+		Name,
+		Price,
+		Colour,
+		Manufacturer,
+		StartingDateAvailable,
+		EndingDateAvailable,
+		Image,
+		Description,
+		productid,
+		Premium_Brand,
+		Sale_Price,
+		Produced_By
 	});
 
-	newProduct.save()
-		.then(product => res.json(product))
-		.catch(err => res.status(500).json({ msg: 'Unable to add product', error: err.message }));
+	try {
+		const savedProduct = await newProduct.save();
+		res.json(savedProduct);
+	} catch (err) {
+		res.status(500).send(err);
+	}
 });
 
 // PUT update a specific product

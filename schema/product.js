@@ -40,19 +40,19 @@ const productSchema = new mongoose.Schema({
         required: false
     },
     // Additional fields
-    ProductId: {
+    productid: {
         type: String,
         required: false
     },
-    PremiumBrand: {
+    Premium_Brand: {
         type: Boolean,
         required: false
     },
-    SalePrice: {
+    Sale_Price: {
         type: Number,
         required: false
     },
-    ProducedBy: {
+    Produced_By: {
         type: String,
         required: false
     }
