@@ -32,7 +32,7 @@ router.get('/products/:id', (req, res) => {
 });
 
 // GET a specific field of a specific product by id
-router.get('/products/:id/:field', (req, res) => {
+router.get('/product/:id/:field', (req, res) => {
 	const { id, field } = req.params;
 
 	// Validate the field
@@ -53,9 +53,9 @@ router.get('/products/:id/:field', (req, res) => {
 
 // GET an image by filename
 router.get('/products/images/:filename', (req, res) => {
-	console.log("HELLO");
+	// console.log("HELLO");
 	const filename = req.params.filename;
-	const dir = path.resolve(__dirname, 'public/images');
+	const dir = path.resolve(__dirname, '../public/images');
 		console.log(filename, dir);
 
 	fs.access(path.join(dir, filename), fs.constants.F_OK, (err) => {
